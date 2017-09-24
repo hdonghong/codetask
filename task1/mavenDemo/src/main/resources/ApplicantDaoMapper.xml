@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="person.dh.mybaties.ApplicantDao">
+	<!-- namespace必须是接口的全限定名，否则报错is not known to the MapperRegistry -->
+
+	<resultMap type="person.dh.mybaties.Applicant" id="ApplicantResult">
+		<id column="ID" jdbcType="INTEGER" property="id"></id>
+		<id column="NAME" jdbcType="VARCHAR" property="name"></id>
+		<id column="QQ" jdbcType="VARCHAR" property="qq"></id>
+	</resultMap>
+	
+    <select id="listApplicants" resultMap="ApplicantResult">
+    <!-- id要与方法名相同 -->
+        select id,name,qq from applicant 
+       	<!-- sql结尾不能加分号 -->
+    </select>
+    
+    <select id="create" parameterType="person.dh.mybaties.Applicant">
+        insert into applicant (name, qq) values (#{name},#{qq})
+    </select>
+</mapper>
+
+<!-- 
+<mapper namespace="Applicant">
+
+	<resultMap type="person.dh.mybaties.Applicant" id="ApplicantResult">
+		<id column="ID" jdbcType="INTEGER" property="id"></id>
+		<id column="NAME" jdbcType="VARCHAR" property="name"></id>
+		<id column="QQ" jdbcType="VARCHAR" property="qq"></id>
+	</resultMap>
+	
+    <select id="listApplicants" resultMap="ApplicantResult">
+        select id,name,qq from applicant 
+    </select>
+</mapper>
+ -->
