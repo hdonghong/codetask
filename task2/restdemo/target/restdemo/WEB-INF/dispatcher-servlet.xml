@@ -8,7 +8,7 @@
 	http://www.springframework.org/schema/mvc
 	http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <context:component-scan base-package="per" annotation-config="true"/>
+    <context:component-scan base-package="per.dh" annotation-config="true"/>
     <mvc:annotation-driven/>
 
     <!--<bean id ="myDateFormatter" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">-->

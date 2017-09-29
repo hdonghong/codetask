@@ -39,9 +39,16 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
+  <!-- 拦截后缀为 .do的 -->
   <servlet-mapping>
     <servlet-name>dispatcher</servlet-name>
     <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+
+  <!-- 拦截所有 -->
+  <servlet-mapping>
+    <servlet-name>dispatcher</servlet-name>
+    <url-pattern>/</url-pattern>
   </servlet-mapping>
 
 </web-app>

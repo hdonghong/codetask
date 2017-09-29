@@ -7,7 +7,10 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-<context:component-scan base-package="per" annotation-config="true"/>
-
-
+    <!-- 方式一 -->
+    <context:component-scan base-package="per.dh" annotation-config="true"/>
+    <!-- 方式二
+    <bean class="per.dh.controller.RestfulApiController" />
+    -->
+    
 </beans>

@@ -60,6 +60,11 @@
       <artifactId>spring-test</artifactId>
       <version>3.1.1.RELEASE</version>
     </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-oxm</artifactId>
+      <version>4.0.0.RELEASE</version>
+    </dependency>
 	
 	<dependency>
 		<groupId>org.aspectj</groupId>
@@ -143,13 +148,6 @@
       <groupId>taglibs</groupId>
       <artifactId>standard</artifactId>
       <version>1.1.2</version>
-    </dependency>
-
-    <dependency>
-      <groupId>javaee</groupId>
-      <artifactId>javaee-api</artifactId>
-      <version>5</version>
-      <scope>provided</scope>
     </dependency>
 
   </dependencies>
