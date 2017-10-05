@@ -1,5 +1,6 @@
 package per.dh.controller;
 
+import org.apache.logging.log4j.LogManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,4 +36,12 @@ public class RestfulApiController {
     public String subjectDelete(@PathVariable("subjectId") String subjectId) {
         return "this is a delete method,subjectId:"+subjectId;
     }
+
+    @RequestMapping(value = "/log/{logId}", method = RequestMethod.GET)
+    @ResponseBody
+    public String logGet(@PathVariable("logId") String logId) {
+        LogManager.getLogger(this.getClass()).debug(logId);
+        return logId;
+    }
+
 }
