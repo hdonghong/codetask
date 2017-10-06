@@ -1,0 +1,6 @@
+pers\hdh\controller\ApplicantController.class
+pers\hdh\service\ApplicantService.class
+pers\hdh\utils\MybatisUtils.class
+pers\hdh\service\impl\ApplicantServiceImpl.class
+pers\hdh\dao\ApplicantDao.class
+pers\hdh\bean\Applicant.class
