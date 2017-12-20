@@ -1,7 +1,7 @@
 package pers.hdh.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,12 +10,14 @@ import pers.hdh.bean.Applicant;
 import pers.hdh.service.ApplicantService;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
 @RequestMapping("/applicant")
 public class ApplicantController {
-    private static Logger log  = LoggerFactory.getLogger(ApplicantController.class);
+    //private static Logger log  = LoggerFactory.getLogger(ApplicantController.class);
+    private static Logger logger = LogManager.getLogger(ApplicantController.class);
     private ApplicantService service;
 
     @Autowired
@@ -30,8 +32,10 @@ public class ApplicantController {
      */
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String getApplicants(Model model) {
+        Date d1 = new Date();
         List<Applicant> list = service.getApplicants();
-//        log.info(""+list.size());
+        Date d2 = new Date();
+        logger.info("查询所有-数据库访问时长-"+ (d2.getTime() - d1.getTime()) + "ms");
         model.addAttribute("list",list);
         return "index";
     }
@@ -44,8 +48,10 @@ public class ApplicantController {
      */
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public String getApplicant(@RequestParam("id") Integer id, Model model) {
-//        log.info(id+"?");
+        Date d1 = new Date();
         Applicant applicant = service.getApplicant(id);
+        Date d2 = new Date();
+        logger.info("查询用户-数据库访问时长-"+ (d2.getTime() - d1.getTime()) + "ms");
         List<Applicant> list = new ArrayList<Applicant>();
         list.add(applicant);
         model.addAttribute("list", list);
