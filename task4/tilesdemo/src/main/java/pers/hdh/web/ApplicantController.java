@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/applicant") // url: /模块/资源/{id}/细分
-public class ApplicantContrller {
+public class ApplicantController {
 
     @Autowired
     private ApplicantService applicantService;

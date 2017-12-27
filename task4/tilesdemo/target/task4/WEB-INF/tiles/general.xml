@@ -16,6 +16,4 @@
         <put-attribute name="foot" value="/foot.jsp" />
     </definition>
 
-
-
 </tiles-definitions>

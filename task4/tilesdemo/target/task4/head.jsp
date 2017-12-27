@@ -1,3 +1,5 @@
+<%@ page import="pers.hdh.utils.CookieUtils" %>
+<%@ page import="pers.hdh.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -19,7 +21,30 @@
                 <p class="col-xs-12 col-sm-6 col-md-6 col-lg-6">客服电话:010-594-78634</p>
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-right">
                     <div>
-                       <a href="#" target="_blank"> <img alt=""  src="${pageContext.request.contextPath}/imges/54537.png"></a>
+                        <%
+                            Cookie cookie = CookieUtils.getCookieByName("token", request.getCookies());
+                            if (cookie != null) {
+                                String token = cookie.getValue();
+                                User user = (User) request.getSession().getAttribute("USER_"+token);
+                                if (user != null) {
+                        %>
+                                    <%=user.getUsername()+"，你好  "%>
+                        <%
+                                    out.print("<a style='color:blue;' href="+ request.getContextPath()+ "/user/logout" + ">退出</a>");
+                                } else {
+                        %>
+                                    <%="访客状态"%>
+                        <%
+                            }
+
+                            } else {
+                        %>
+                                <%="访客状态"%>
+                        <%
+                            }
+                        %>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="#" target="_blank"> <img alt=""  src="${pageContext.request.contextPath}/imges/54537.png"></a>
                         <a href="#" target="_blank"><img alt=""  src="${pageContext.request.contextPath}/imges/45678678.png"></a>
                         <a href="#" target="_blank"> <img alt="" src="${pageContext.request.contextPath}/imges/54375483543.png"></a>
                     </div>

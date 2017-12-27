@@ -16,7 +16,7 @@
 <link href="${pageContext.request.contextPath}/css/Untitled-1base.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-
+    <%-- head --%>
     <tiles:insertAttribute name="head"></tiles:insertAttribute>
 		
 	<div id="myCarousel" class="carousel slide">
