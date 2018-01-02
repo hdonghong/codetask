@@ -20,4 +20,21 @@
      -->
     <tx:annotation-driven transaction-manager="transactionManager" />
 
+    <!-- 配置memcache -->
+    <bean id="xMemcachedClientBuilder" class="net.rubyeye.xmemcached.XMemcachedClientBuilder">
+        <constructor-arg>
+            <bean class="java.net.InetSocketAddress" >
+                <constructor-arg>
+                    <value>127.0.0.1</value>
+                </constructor-arg>
+                <constructor-arg>
+                    <value>11211</value>
+                </constructor-arg>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <bean name="memcachedClient" factory-bean="xMemcachedClientBuilder"
+          factory-method="build" destroy-method="shutdown">
+    </bean>
+
 </beans>

@@ -1,6 +1,8 @@
 package pers.hdh.model;
 
-public class Profession {
+import java.io.Serializable;
+
+public class Profession implements Serializable {
 
     private Long id;
     private Long create_at;

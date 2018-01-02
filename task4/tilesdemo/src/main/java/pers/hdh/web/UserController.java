@@ -51,11 +51,12 @@ public class UserController {
                 session.setMaxInactiveInterval(1800);
                 // 重定向
                 response.sendRedirect(request.getContextPath() + "/applicant/list");
-            }
                 return null;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        // 信息错误时返回提示
         request.setAttribute("message", "用户名或密码错误");
         return "login";
     }

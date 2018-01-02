@@ -19,8 +19,8 @@ public class LoginInterceptor implements HandlerInterceptor {
         Cookie cookie = CookieUtils.getCookieByName("token", request.getCookies());
         if (cookie != null) {
             String token = cookie.getValue();
-
             HttpSession session = request.getSession();
+            // 通过token获取session中的user对象
             User user = (User) session.getAttribute("USER_" + token);
             if (user != null) {
                 // 刷新cookie存活时间

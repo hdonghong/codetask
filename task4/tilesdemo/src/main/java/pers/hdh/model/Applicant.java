@@ -1,10 +1,12 @@
 package pers.hdh.model;
 
+import java.io.Serializable;
+
 /**
  * 学员的表实体
  * @author Chandler
  */
-public class Applicant {
+public class Applicant implements Serializable {
 
     private Long id;
 

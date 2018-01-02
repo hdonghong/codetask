@@ -3,8 +3,10 @@ package pers.hdh.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import pers.hdh.model.Profession;
 import pers.hdh.service.ProfessionService;
 
@@ -22,5 +24,16 @@ public class ProfessionController {
         List<Profession> professionList = professionService.findAll(0, 6);
         model.addAttribute("list", professionList);
         return "t11";
+    }
+
+    /**
+     * 提供json接口，用于压测json请求
+     * @param profession
+     * @return
+     */
+    @RequestMapping(value = "testjson", method = RequestMethod.GET)
+    @ResponseBody
+    public String testJson(@RequestBody Profession profession) {
+        return profession.toString();
     }
 }

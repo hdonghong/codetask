@@ -78,5 +78,9 @@
     <orderEntry type="library" name="Maven: org.apache.tiles:tiles-autotag-core-runtime:1.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tiles:tiles-request-jsp:1.0.6" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.8" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-simple:1.7.6" level="project" />
+    <orderEntry type="library" name="Maven: commons-pool:commons-pool:1.5.6" level="project" />
+    <orderEntry type="library" name="Maven: com.danga:memcached:2.6.6" level="project" />
+    <orderEntry type="library" name="Maven: com.googlecode.xmemcached:xmemcached:2.0.0" level="project" />
   </component>
 </module>
