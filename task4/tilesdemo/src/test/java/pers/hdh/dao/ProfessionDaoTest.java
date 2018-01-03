@@ -28,4 +28,12 @@ public class ProfessionDaoTest {
 
     }
 
+    @Test
+    public void getById() throws Exception {
+        Profession profession = professionDao.getById(1l);
+        System.out.println(profession);
+    }
+
+
+
 }

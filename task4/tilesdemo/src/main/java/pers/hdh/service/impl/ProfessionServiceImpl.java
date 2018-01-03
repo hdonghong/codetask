@@ -30,7 +30,7 @@ public class ProfessionServiceImpl implements ProfessionService {
         List<Profession> professionList = null;
         try {
             // 从memcache中获取applicantList数据
-            // professionList = memcachedClient.get("professionList");
+            professionList = memcachedClient.get("professionList");
             if (professionList == null) {
                 // 如果缓存中不存在则进行数据库查询，并将结果放入memcache中
                 professionList = professionDao.findAll(offset, limit);
@@ -50,5 +50,25 @@ public class ProfessionServiceImpl implements ProfessionService {
             e.printStackTrace();
         }
         return professionList;
+    }
+
+    @Override
+    public Profession getById(Long id) {
+        if (id != null) {
+            try {
+                // 从memcached缓存中获取指定id的profession
+                //Profession profession = memcachedClient.get("profession_" + id );
+                Profession profession = null;
+                if (profession == null) {
+                    // 获取不到则查询数据库并将获取到的数据放入缓存中
+                    profession = professionDao.getById(id);
+                    memcachedClient.set("profession_" + id, 3600, profession);
+                }
+                return profession;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
 }

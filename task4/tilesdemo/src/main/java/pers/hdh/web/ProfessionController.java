@@ -31,9 +31,12 @@ public class ProfessionController {
      * @param profession
      * @return
      */
-    @RequestMapping(value = "testjson", method = RequestMethod.GET)
+    @RequestMapping(value = "testjson", method = RequestMethod.POST)
     @ResponseBody
     public String testJson(@RequestBody Profession profession) {
+        if (profession != null) {
+            profession = professionService.getById(profession.getId());
+        }
         return profession.toString();
     }
 }

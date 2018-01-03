@@ -8,8 +8,17 @@
     <select id="findAll" resultType="Profession">
         select
           id, create_at, update_at, job, description, `level`, degree, demand, students, message
-        from profession
+        from
+          profession
         limit #{offset}, #{limit}
+    </select>
+    <select id="getById" resultType="Profession">
+        select
+          id, create_at, update_at, job, description, `level`, degree, demand, students, message
+        from
+          profession
+        where
+          id = #{id}
     </select>
 
 </mapper>

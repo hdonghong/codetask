@@ -37,4 +37,10 @@ public class ProfessionServiceImplTest {
          */
     }
 
+    @Test
+    public void getById() throws Exception {
+        Profession profession = professionService.getById(1l);
+        logger.info(profession.toString());
+    }
+
 }
