@@ -43,4 +43,18 @@ public class ProfessionServiceImplTest {
         logger.info(profession.toString());
     }
 
+    @Test
+    public void findAllByRedis() throws Exception {
+        List<Profession> professionList = professionService.findAllByRedis(0, 3);
+        for (Profession profession : professionList) {
+            logger.info(profession.toString());
+        }
+    }
+
+    @Test
+    public void getByIdRedis() throws Exception {
+        Profession profession = professionService.getByIdRedis(1l);
+        logger.info(profession.toString());
+    }
+
 }

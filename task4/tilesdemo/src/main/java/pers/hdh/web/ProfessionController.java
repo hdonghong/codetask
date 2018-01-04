@@ -21,7 +21,8 @@ public class ProfessionController {
 
     @RequestMapping(value="list", method = RequestMethod.GET)
     public String list(Model model) {
-        List<Profession> professionList = professionService.findAll(0, 6);
+//        List<Profession> professionList = professionService.findAll(0, 6);
+        List<Profession> professionList = professionService.findAllByRedis(0, 6);
         model.addAttribute("list", professionList);
         return "t11";
     }
@@ -35,7 +36,8 @@ public class ProfessionController {
     @ResponseBody
     public String testJson(@RequestBody Profession profession) {
         if (profession != null) {
-            profession = professionService.getById(profession.getId());
+            //profession = professionService.getById(profession.getId());
+            profession = professionService.getByIdRedis(profession.getId());
         }
         return profession.toString();
     }

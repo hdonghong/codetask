@@ -10,7 +10,11 @@ import pers.hdh.dao.ProfessionDao;
 import pers.hdh.model.Applicant;
 import pers.hdh.model.Profession;
 import pers.hdh.service.ProfessionService;
+import pers.hdh.utils.FastJsonUtils;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
 
@@ -24,6 +28,10 @@ public class ProfessionServiceImpl implements ProfessionService {
     // 注入memcached
     @Autowired
     private MemcachedClient memcachedClient;
+
+    // 注入JedisPool
+    @Autowired
+    private JedisPool jedisPool;
 
     @Override
     public List<Profession> findAll(int offset, int limit) {
@@ -53,12 +61,42 @@ public class ProfessionServiceImpl implements ProfessionService {
     }
 
     @Override
+    public List<Profession> findAllByRedis(int offset, int limit) {
+        Jedis jedis = jedisPool.getResource();
+        List<Profession> professionList = null;
+
+        // 从缓存中获取数据，但不能影响正常的业务逻辑
+        try {
+            String jsonData = jedis.hget("profession_list", "f_profession");
+            if (jsonData != null) {
+                professionList = FastJsonUtils.jsonToList(jsonData, Profession.class);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (professionList == null) {
+            professionList = professionDao.findAll(offset, limit);
+            // 将数据放入redis中，但不能影响正常的业务逻辑
+            try {
+                jedis.hset("profession_list", "f_profession", FastJsonUtils.toJSONString(professionList));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        // 释放连接
+        jedis.close();
+
+        return professionList;
+    }
+
+    @Override
     public Profession getById(Long id) {
         if (id != null) {
             try {
                 // 从memcached缓存中获取指定id的profession
-                //Profession profession = memcachedClient.get("profession_" + id );
-                Profession profession = null;
+                Profession profession = memcachedClient.get("profession_" + id );
                 if (profession == null) {
                     // 获取不到则查询数据库并将获取到的数据放入缓存中
                     profession = professionDao.getById(id);
@@ -67,6 +105,33 @@ public class ProfessionServiceImpl implements ProfessionService {
                 return profession;
             } catch (Exception e) {
                 e.printStackTrace();
+            }
+        }
+        return null;
+    }
+    @Override
+    public Profession getByIdRedis(Long id) {
+        if (id != null) {
+            Jedis jedis = jedisPool.getResource();
+            Profession profession = null;
+            try {
+                // 从redis缓存中获取指定id的profession
+                String jsonData = jedis.get("profession_" + id );
+                if (jsonData != null) {
+                   profession = FastJsonUtils.jsonToList(jsonData, Profession.class).get(0);
+                }
+                if (profession == null) {
+                    // 获取不到则查询数据库并将获取到的数据放入缓存中
+                    profession = professionDao.getById(id);
+                    List<Profession> list = new ArrayList<>();
+                    list.add(profession);
+                    jedis.set("profession_" + id, FastJsonUtils.toJSONString(list));
+                }
+                return profession;
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                jedis.close();
             }
         }
         return null;

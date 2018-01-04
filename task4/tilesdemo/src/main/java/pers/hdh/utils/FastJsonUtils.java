@@ -3,6 +3,7 @@ package pers.hdh.utils;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -108,5 +109,18 @@ public class FastJsonUtils {
 		}
 		return true;
 		
+	}
+
+	/**
+	 * 将json数据转换成pojo对象list
+	 * <p>Title: jsonToList</p>
+	 * <p>Description: </p>
+	 * @param jsonData
+	 * @param beanType
+	 * @return
+	 */
+	public static <T>List<T> jsonToList(String jsonData, Class<T> beanType) {
+		List<T> list = JSON.parseArray(jsonData, beanType);
+		return list;
 	}
 }
