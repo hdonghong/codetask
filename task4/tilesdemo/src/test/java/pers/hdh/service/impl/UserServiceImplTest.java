@@ -30,4 +30,9 @@ public class UserServiceImplTest {
         System.out.println(user);
     }
 
+    @Test
+    public void regist() throws Exception {
+        userService.regist(new User());
+    }
+
 }

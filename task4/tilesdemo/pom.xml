@@ -231,6 +231,22 @@
       <version>RELEASE</version>
     </dependency>
 
+    <!-- sendCloud email WEBAPI_4.4代码示例需要依赖如下jar包 (httpclient版本4.4) -->
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>4.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpmime</artifactId>
+      <version>4.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20140107</version>
+    </dependency>
 
 
   </dependencies>

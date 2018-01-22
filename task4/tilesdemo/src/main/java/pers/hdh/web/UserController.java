@@ -118,30 +118,30 @@ public class UserController {
     @RequestMapping(value="checkCode", method = RequestMethod.POST)
     public void checkCode(HttpServletRequest request, HttpServletResponse response,
                           @RequestParam("phone") String phone) {
-        // 生成随机验证码
-        int randomCode = new Random().nextInt(10000) % (10000 - 1000 + 1) + 1000;
-
-        HashMap<String, Object> result = null;
-
-        CCPRestSmsSDK restAPI = restAPIUtils.getRestAPI();
-        result = restAPI.sendTemplateSMS(phone,"1" ,new String[]{randomCode+"", "1"});
-
-        if(!("000000".equals(result.get("statusCode")))){
-            // 进行异常处理，异常返回输出错误码和错误信息
-            System.out.println("错误码=" + result.get("statusCode") +" 错误信息= "+result.get("statusMsg"));
-        }
-
         try {
+            if (phone == null || phone.trim().equals("")) { // 用户恶意输入的手机号
+                response.getWriter().print("");
+                return;
+            }
+            // 生成随机验证码
+            int randomCode = new Random().nextInt(10000) % (10000 - 1000 + 1) + 1000;
+            HashMap<String, Object> result = null;
+            CCPRestSmsSDK restAPI = restAPIUtils.getRestAPI();
+            result = restAPI.sendTemplateSMS(phone,"1" ,new String[]{randomCode+"", "1"});
+
+            // 进行异常处理，异常返回输出错误码和错误信息
+            if(!("000000".equals(result.get("statusCode")))){
+                System.out.println("错误码=" + result.get("statusCode") +" 错误信息= "+result.get("statusMsg"));
+                return;
+            }
+            // 验证码写到浏览器端方便验证
             response.getWriter().print(randomCode);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public static void main(String[] args ) {
-        for (int i = 1; i < 1000; i++) {
-            int randomCode = new Random().nextInt(10000) % (10000 - 1000 + 1) + 1000;
-            System.out.println(randomCode);
-        }
+
     }
 }

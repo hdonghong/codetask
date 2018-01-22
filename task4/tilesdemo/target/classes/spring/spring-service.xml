@@ -69,4 +69,16 @@
         <constructor-arg name="port" value="6379"/>
     </bean>
 
+    <!-- email -->
+    <bean id="email" class="pers.hdh.model.Email">
+        <property name="url" value="http://sendcloud.sohu.com/webapi/mail.send.json" />
+        <property name="apiUser" value="hdonghong_test_AZbWq1" />
+        <property name="apiKey" value="YXqa0ESVVG8T8ayT" />
+        <property name="rcpt_to" value="799108252@qq.com" />
+        <property name="from" value="sendcloud@sendcloud.im" />
+        <property name="fromname" value="hdonghong" />
+        <property name="subject" value="来自 H DongHong 的邮件" />
+        <property name="resp_email_id" value="true" />
+    </bean>
+
 </beans>

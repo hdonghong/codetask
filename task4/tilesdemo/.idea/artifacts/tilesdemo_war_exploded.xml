@@ -58,6 +58,11 @@
           <element id="library" level="project" name="Maven: org.junit.jupiter:junit-jupiter-api:5.1.0-M1" />
           <element id="library" level="project" name="Maven: org.opentest4j:opentest4j:1.0.0" />
           <element id="library" level="project" name="Maven: org.junit.platform:junit-platform-commons:1.1.0-M1" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.4" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4" />
+          <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.9" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpmime:4.4" />
+          <element id="library" level="project" name="Maven: org.json:json:20140107" />
         </element>
       </element>
       <element id="directory" name="META-INF">
