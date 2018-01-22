@@ -31,6 +31,9 @@ public class UserDaoTest {
         user.setUid(UUID.randomUUID().toString().replaceAll("-", ""));
         user.setUsername("admin");
         user.setPassword("123");
+        user.setPhone("155");
+        user.setEmail("799108252@Qq.com");
+        user.setHead("www.baidu.com");
 
         userDao.regist(user);
     }

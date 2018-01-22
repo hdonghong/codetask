@@ -9,6 +9,33 @@ public class User {
     private String username;
     private String password;
     private String loginAt;
+    private String phone;
+    private String email;
+    private String head;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getHead() {
+        return head;
+    }
+
+    public void setHead(String head) {
+        this.head = head;
+    }
 
     public String getLoginAt() {
         return loginAt;

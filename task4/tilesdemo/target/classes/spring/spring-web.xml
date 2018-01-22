@@ -55,4 +55,15 @@
         </mvc:interceptor>
     </mvc:interceptors>
 
+    <bean id="restAPIUtils" class="pers.hdh.utils.CCPRestSmsUtils">
+        <constructor-arg name="restAPI" >
+            <bean class="com.cloopen.rest.sdk.CCPRestSmsSDK"></bean>
+        </constructor-arg>
+        <constructor-arg name="SERVER_IP" value="app.cloopen.com" />
+        <constructor-arg name="SERVER_PORT" value="8883" />
+        <constructor-arg name="ACCOUNT_SID" value="8a216da860e4d4f10160ef610dff03db" />
+        <constructor-arg name="ACCOUNT_TOKEN" value="c5050cb9a38f4d4ab5f4c18b76e2eb45" />
+        <constructor-arg name="App_ID" value="8a216da860e4d4f10160ef610e6403e2" />
+    </bean>
+
 </beans>

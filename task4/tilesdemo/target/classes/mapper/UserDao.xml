@@ -17,9 +17,9 @@
 
     <insert id="regist" parameterType="User">
         insert into
-          `user` (uid, username, password)
+          `user` (uid, username, password, phone, email, head)
         values
-          (#{uid}, #{username}, #{password})
+          (#{uid}, #{username}, #{password}, #{phone}, #{email}, #{head})
     </insert>
 
 </mapper>
