@@ -1,7 +1,0 @@
-person\dh\service\ApplicantService.class
-person\dh\mapper\ApplicantMapper.class
-person\dh\dao\impl\ApplicantDaoImpl.class
-person\dh\domain\Applicant.class
-person\dh\app\MainApp.class
-person\dh\dao\ApplicantDao.class
-person\dh\service\impl\ApplicantServiceImpl.class

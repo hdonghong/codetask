@@ -1,6 +1,0 @@
-17:41:59.424 FATAL person.dh.log4j.Log4j2Test 9 main - fatal level
-17:42:05.281 ERROR person.dh.log4j.Log4j2Test 10 main - error level
-17:42:06.417 WARN  person.dh.log4j.Log4j2Test 11 main - warn level
-17:42:07.402 INFO  person.dh.log4j.Log4j2Test 12 main - info level
-17:42:08.120 DEBUG person.dh.log4j.Log4j2Test 13 main - debug level
-17:42:10.784 TRACE person.dh.log4j.Log4j2Test 14 main - trace level
