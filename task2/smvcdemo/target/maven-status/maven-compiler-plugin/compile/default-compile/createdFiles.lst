@@ -1,6 +1,0 @@
-pers\hdh\service\CourseService.class
-pers\hdh\model\Course.class
-pers\hdh\controller\HelloMvcController.class
-pers\hdh\model\Chapter.class
-pers\hdh\controller\CourseController.class
-pers\hdh\service\impl\CourseServiceImpl.class
